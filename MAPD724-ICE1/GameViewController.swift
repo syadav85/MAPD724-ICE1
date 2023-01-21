@@ -9,43 +9,36 @@ import UIKit
 import SpriteKit
 import GameplayKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController
+{
 
-    override func viewDidLoad() {
+    override func viewDidLoad()
+    {
         super.viewDidLoad()
-        
-        
-        if let scene = GKScene(fileNamed: "GameScene") {
+
+        if let scene = GKScene(fileNamed: "GameScene")
+        {
             
-            if let sceneNode = scene.rootNode as! GameScene? {
-                
-                // Copy gameplay related content over to the scene
-                sceneNode.entities = scene.entities
-                sceneNode.graphs = scene.graphs
-                
-                // Set the scale mode to scale to fit the window
+            if let sceneNode = scene.rootNode as! GameScene?
+            {
                 sceneNode.scaleMode = .aspectFill
                 
-                // Present the scene
-                if let view = self.view as! SKView? {
+                if let view = self.view as! SKView?
+                {
                     view.presentScene(sceneNode)
-                    
                     view.ignoresSiblingOrder = true
-                    
                 }
             }
         }
     }
 
-    override var supportedInterfaceOrientations: UIInterfaceOrientationMask {
-        if UIDevice.current.userInterfaceIdiom == .phone {
-            return .allButUpsideDown
-        } else {
-            return .all
-        }
+    override var supportedInterfaceOrientations: UIInterfaceOrientationMask
+    {
+        return .portrait
     }
 
-    override var prefersStatusBarHidden: Bool {
+    override var prefersStatusBarHidden: Bool
+    {
         return true
     }
 }
